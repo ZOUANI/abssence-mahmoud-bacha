@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InterventionEditDlg" widgetVar="InterventionEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditInterventionTitle}">
+            <h:form id="InterventionEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{interventionController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditInterventionLabel_volumeHoraireCours}" for="volumeHoraireCours" />
+                        <p:inputText id="volumeHoraireCours" value="#{interventionController.selected.volumeHoraireCours}" title="#{bundle.EditInterventionTitle_volumeHoraireCours}" />
+                        <p:outputLabel value="#{bundle.EditInterventionLabel_volumeHoraireTd}" for="volumeHoraireTd" />
+                        <p:inputText id="volumeHoraireTd" value="#{interventionController.selected.volumeHoraireTd}" title="#{bundle.EditInterventionTitle_volumeHoraireTd}" />
+                        <p:outputLabel value="#{bundle.EditInterventionLabel_volumeHoraireTP}" for="volumeHoraireTP" />
+                        <p:inputText id="volumeHoraireTP" value="#{interventionController.selected.volumeHoraireTP}" title="#{bundle.EditInterventionTitle_volumeHoraireTP}" />
+                        <p:outputLabel value="#{bundle.EditInterventionLabel_volumeHoraireAP}" for="volumeHoraireAP" />
+                        <p:inputText id="volumeHoraireAP" value="#{interventionController.selected.volumeHoraireAP}" title="#{bundle.EditInterventionTitle_volumeHoraireAP}" />
+                        <p:outputLabel value="#{bundle.EditInterventionLabel_idElementModule}" for="idElementModule" />
+                        <p:inputText id="idElementModule" value="#{interventionController.selected.idElementModule}" title="#{bundle.EditInterventionTitle_idElementModule}" />
+                        <p:outputLabel value="#{bundle.EditInterventionLabel_idProfesseur}" for="idProfesseur" />
+                        <p:inputText id="idProfesseur" value="#{interventionController.selected.idProfesseur}" title="#{bundle.EditInterventionTitle_idProfesseur}" />
+                        <p:outputLabel value="#{bundle.EditInterventionLabel_elementModule}" for="elementModule" />
+                        <p:selectOneMenu id="elementModule" value="#{interventionController.selected.elementModule}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{elementModuleController.itemsAvailableSelectOne}"
+                                           var="elementModuleItem"
+                                           itemValue="#{elementModuleItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditInterventionLabel_professeur}" for="professeur" />
+                        <p:selectOneMenu id="professeur" value="#{interventionController.selected.professeur}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{professeurController.itemsAvailableSelectOne}"
+                                           var="professeurItem"
+                                           itemValue="#{professeurItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{interventionController.update}" value="#{bundle.Save}" update="display,:InterventionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'InterventionEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="InterventionEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InscriptionEditDlg" widgetVar="InscriptionEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditInscriptionTitle}">
+            <h:form id="InscriptionEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{inscriptionController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditInscriptionLabel_date}" for="date" />
+                        <p:calendar id="date" pattern="MM/dd/yyyy" value="#{inscriptionController.selected.date}" title="#{bundle.EditInscriptionTitle_date}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditInscriptionLabel_niveau}" for="niveau" />
+                        <p:inputText id="niveau" value="#{inscriptionController.selected.niveau}" title="#{bundle.EditInscriptionTitle_niveau}" />
+                        <p:outputLabel value="#{bundle.EditInscriptionLabel_anneeUniversitaire}" for="anneeUniversitaire" />
+                        <p:inputText id="anneeUniversitaire" value="#{inscriptionController.selected.anneeUniversitaire}" title="#{bundle.EditInscriptionTitle_anneeUniversitaire}" />
+                        <p:outputLabel value="#{bundle.EditInscriptionLabel_filiere}" for="filiere" />
+                        <p:inputText id="filiere" value="#{inscriptionController.selected.filiere}" title="#{bundle.EditInscriptionTitle_filiere}" />
+                        <p:outputLabel value="#{bundle.EditInscriptionLabel_etudiant}" for="etudiant" />
+                        <p:inputText id="etudiant" value="#{inscriptionController.selected.etudiant}" title="#{bundle.EditInscriptionTitle_etudiant}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{inscriptionController.update}" value="#{bundle.Save}" update="display,:InscriptionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'InscriptionEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="InscriptionEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

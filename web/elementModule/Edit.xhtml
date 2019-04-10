@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ElementModuleEditDlg" widgetVar="ElementModuleEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditElementModuleTitle}">
+            <h:form id="ElementModuleEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{elementModuleController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditElementModuleLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{elementModuleController.selected.id}" title="#{bundle.EditElementModuleTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditElementModuleLabel_code}" for="code" />
+                        <p:inputText id="code" value="#{elementModuleController.selected.code}" title="#{bundle.EditElementModuleTitle_code}" />
+                        <p:outputLabel value="#{bundle.EditElementModuleLabel_intitule}" for="intitule" />
+                        <p:inputText id="intitule" value="#{elementModuleController.selected.intitule}" title="#{bundle.EditElementModuleTitle_intitule}" />
+                        <p:outputLabel value="#{bundle.EditElementModuleLabel_contenu}" for="contenu" />
+                        <p:inputText id="contenu" value="#{elementModuleController.selected.contenu}" title="#{bundle.EditElementModuleTitle_contenu}" />
+                        <p:outputLabel value="#{bundle.EditElementModuleLabel_volumeHoraireCours}" for="volumeHoraireCours" />
+                        <p:inputText id="volumeHoraireCours" value="#{elementModuleController.selected.volumeHoraireCours}" title="#{bundle.EditElementModuleTitle_volumeHoraireCours}" />
+                        <p:outputLabel value="#{bundle.EditElementModuleLabel_volumeHoraireTd}" for="volumeHoraireTd" />
+                        <p:inputText id="volumeHoraireTd" value="#{elementModuleController.selected.volumeHoraireTd}" title="#{bundle.EditElementModuleTitle_volumeHoraireTd}" />
+                        <p:outputLabel value="#{bundle.EditElementModuleLabel_volumeHoraireTP}" for="volumeHoraireTP" />
+                        <p:inputText id="volumeHoraireTP" value="#{elementModuleController.selected.volumeHoraireTP}" title="#{bundle.EditElementModuleTitle_volumeHoraireTP}" />
+                        <p:outputLabel value="#{bundle.EditElementModuleLabel_volumeHoraireAP}" for="volumeHoraireAP" />
+                        <p:inputText id="volumeHoraireAP" value="#{elementModuleController.selected.volumeHoraireAP}" title="#{bundle.EditElementModuleTitle_volumeHoraireAP}" />
+                        <p:outputLabel value="#{bundle.EditElementModuleLabel_module}" for="module" />
+                        <p:selectOneMenu id="module" value="#{elementModuleController.selected.module}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{moduleController.itemsAvailableSelectOne}"
+                                           var="moduleItem"
+                                           itemValue="#{moduleItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{elementModuleController.update}" value="#{bundle.Save}" update="display,:ElementModuleListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ElementModuleEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ElementModuleEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

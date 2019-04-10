@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SemaineEditDlg" widgetVar="SemaineEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditSemaineTitle}">
+            <h:form id="SemaineEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{semaineController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditSemaineLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{semaineController.selected.id}" title="#{bundle.EditSemaineTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditSemaineLabel_dateDebut}" for="dateDebut" />
+                        <p:calendar id="dateDebut" pattern="MM/dd/yyyy" value="#{semaineController.selected.dateDebut}" title="#{bundle.EditSemaineTitle_dateDebut}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditSemaineLabel_dateFin}" for="dateFin" />
+                        <p:calendar id="dateFin" pattern="MM/dd/yyyy" value="#{semaineController.selected.dateFin}" title="#{bundle.EditSemaineTitle_dateFin}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditSemaineLabel_plannification}" for="plannification" />
+                        <p:selectOneMenu id="plannification" value="#{semaineController.selected.plannification}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{plannificationController.itemsAvailableSelectOne}"
+                                           var="plannificationItem"
+                                           itemValue="#{plannificationItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{semaineController.update}" value="#{bundle.Save}" update="display,:SemaineListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SemaineEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SemaineEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

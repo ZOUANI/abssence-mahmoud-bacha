@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProfesseurCreateDlg" widgetVar="ProfesseurCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateProfesseurTitle}">
+            <h:form id="ProfesseurCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{professeurController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateProfesseurLabel_specialite}" for="specialite" />
+                        <p:inputText id="specialite" value="#{professeurController.selected.specialite}" title="#{bundle.CreateProfesseurTitle_specialite}" />
+                        <p:outputLabel value="#{bundle.CreateProfesseurLabel_grade}" for="grade" />
+                        <p:inputText id="grade" value="#{professeurController.selected.grade}" title="#{bundle.CreateProfesseurTitle_grade}" />
+                        <p:outputLabel value="#{bundle.CreateProfesseurLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{professeurController.selected.id}" title="#{bundle.CreateProfesseurTitle_id}" />
+                        <p:outputLabel value="#{bundle.CreateProfesseurLabel_cin}" for="cin" />
+                        <p:inputText id="cin" value="#{professeurController.selected.cin}" title="#{bundle.CreateProfesseurTitle_cin}" />
+                        <p:outputLabel value="#{bundle.CreateProfesseurLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{professeurController.selected.nom}" title="#{bundle.CreateProfesseurTitle_nom}" />
+                        <p:outputLabel value="#{bundle.CreateProfesseurLabel_prenom}" for="prenom" />
+                        <p:inputText id="prenom" value="#{professeurController.selected.prenom}" title="#{bundle.CreateProfesseurTitle_prenom}" />
+                        <p:outputLabel value="#{bundle.CreateProfesseurLabel_dateNaissance}" for="dateNaissance" />
+                        <p:calendar id="dateNaissance" pattern="MM/dd/yyyy" value="#{professeurController.selected.dateNaissance}" title="#{bundle.EditProfesseurTitle_dateNaissance}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateProfesseurLabel_tel}" for="tel" />
+                        <p:inputText id="tel" value="#{professeurController.selected.tel}" title="#{bundle.CreateProfesseurTitle_tel}" />
+                        <p:outputLabel value="#{bundle.CreateProfesseurLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{professeurController.selected.email}" title="#{bundle.CreateProfesseurTitle_email}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{professeurController.create}" value="#{bundle.Save}" update="display,:ProfesseurListForm:datalist,:growl" oncomplete="handleSubmit(args,'ProfesseurCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ProfesseurCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

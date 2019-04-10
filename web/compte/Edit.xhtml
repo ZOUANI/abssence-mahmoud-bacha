@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CompteEditDlg" widgetVar="CompteEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCompteTitle}">
+            <h:form id="CompteEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{compteController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCompteLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{compteController.selected.id}" title="#{bundle.EditCompteTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditCompteLabel_login}" for="login" />
+                        <p:inputText id="login" value="#{compteController.selected.login}" title="#{bundle.EditCompteTitle_login}" />
+                        <p:outputLabel value="#{bundle.EditCompteLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{compteController.selected.password}" title="#{bundle.EditCompteTitle_password}" />
+                        <p:outputLabel value="#{bundle.EditCompteLabel_role}" for="role" />
+                        <p:inputText id="role" value="#{compteController.selected.role}" title="#{bundle.EditCompteTitle_role}" />
+                        <p:outputLabel value="#{bundle.EditCompteLabel_utilisateur}" for="utilisateur" />
+                        <p:selectOneMenu id="utilisateur" value="#{compteController.selected.utilisateur}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{utilisateurController.itemsAvailableSelectOne}"
+                                           var="utilisateurItem"
+                                           itemValue="#{utilisateurItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{compteController.update}" value="#{bundle.Save}" update="display,:CompteListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CompteEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CompteEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

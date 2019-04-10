@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AnneeUniversitaireEditDlg" widgetVar="AnneeUniversitaireEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditAnneeUniversitaireTitle}">
+            <h:form id="AnneeUniversitaireEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{anneeUniversitaireController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditAnneeUniversitaireLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{anneeUniversitaireController.selected.id}" title="#{bundle.EditAnneeUniversitaireTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditAnneeUniversitaireLabel_debutAnnee}" for="debutAnnee" />
+                        <p:inputText id="debutAnnee" value="#{anneeUniversitaireController.selected.debutAnnee}" title="#{bundle.EditAnneeUniversitaireTitle_debutAnnee}" />
+                        <p:outputLabel value="#{bundle.EditAnneeUniversitaireLabel_finAnnee}" for="finAnnee" />
+                        <p:inputText id="finAnnee" value="#{anneeUniversitaireController.selected.finAnnee}" title="#{bundle.EditAnneeUniversitaireTitle_finAnnee}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{anneeUniversitaireController.update}" value="#{bundle.Save}" update="display,:AnneeUniversitaireListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AnneeUniversitaireEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AnneeUniversitaireEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ModuleViewDlg" widgetVar="ModuleViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewModuleTitle}">
+            <h:form id="ModuleViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{moduleController.selected != null}">
+                        <h:outputText value="#{bundle.ViewModuleLabel_id}"/>
+                        <h:outputText value="#{moduleController.selected.id}" title="#{bundle.ViewModuleTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewModuleLabel_code}"/>
+                        <h:outputText value="#{moduleController.selected.code}" title="#{bundle.ViewModuleTitle_code}"/>
+                        <h:outputText value="#{bundle.ViewModuleLabel_intitule}"/>
+                        <h:outputText value="#{moduleController.selected.intitule}" title="#{bundle.ViewModuleTitle_intitule}"/>
+                        <h:outputText value="#{bundle.ViewModuleLabel_nature}"/>
+                        <h:outputText value="#{moduleController.selected.nature}" title="#{bundle.ViewModuleTitle_nature}"/>
+                        <h:outputText value="#{bundle.ViewModuleLabel_syllabus}"/>
+                        <h:outputText value="#{moduleController.selected.syllabus}" title="#{bundle.ViewModuleTitle_syllabus}"/>
+                        <h:outputText value="#{bundle.ViewModuleLabel_volumeHoraire}"/>
+                        <h:outputText value="#{moduleController.selected.volumeHoraire}" title="#{bundle.ViewModuleTitle_volumeHoraire}"/>
+                        <h:outputText value="#{bundle.ViewModuleLabel_objectifModule}"/>
+                        <h:outputText value="#{moduleController.selected.objectifModule}" title="#{bundle.ViewModuleTitle_objectifModule}"/>
+                        <h:outputText value="#{bundle.ViewModuleLabel_coordonnateur}"/>
+                        <h:outputText value="#{moduleController.selected.coordonnateur}" title="#{bundle.ViewModuleTitle_coordonnateur}"/>
+                        <h:outputText value="#{bundle.ViewModuleLabel_semestre}"/>
+                        <h:outputText value="#{moduleController.selected.semestre}" title="#{bundle.ViewModuleTitle_semestre}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ModuleViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
